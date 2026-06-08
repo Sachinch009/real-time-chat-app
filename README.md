@@ -68,6 +68,29 @@ Real-Time-Chat-App/
 ├── package.json
 └── README.md
 ```
+## Environment Variables
+
+Create a `.env` file in the project root and add the following variables:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+```
+
+### Example
+
+```env
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name
+JWT_SECRET=your_secure_secret_key
+```
+> Note: Never commit your `.env` file or expose database credentials, API keys, or secrets in public repositories.
+
+## Security
+
+* Credentials are managed using environment variables.
+* Sensitive configuration is excluded from version control using `.gitignore`.
+* JWT-based authentication is used for securing user sessions.
+* Passwords are hashed using bcrypt before storage.
 
 ## About
 
