@@ -1,5 +1,5 @@
 # Real-Time Chat Application
-http://16.171.25.155:5000
+Live Demo: http://16.171.25.155:5000
 
 A modern full-stack real-time chat application built using React, Node.js, Express.js, MongoDB Atlas, and Socket.IO. The application enables users to communicate instantly through real-time messaging with secure authentication and an intuitive user interface.
 
