@@ -13,7 +13,8 @@ export const SocketContextProvider = ({ children }) => {
 
     useEffect(() => {
         if (authUser) {
-            const newSocket = io("http://localhost:5000", {
+            const socketUrl = import.meta.env.MODE === "development" ? "http://localhost:5000" : "/";
+            const newSocket = io(socketUrl, {
                 withCredentials: true,
                 transports: ["websocket", "polling"],
                 query: { userId: authUser._id },

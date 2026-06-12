@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: .
+    container_name: chatly-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+
+  frontend:
+    build: ./frontend
+    container_name: chatly-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend

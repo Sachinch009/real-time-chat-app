@@ -9,7 +9,7 @@ const userSocketMap = {}; // Map userId -> socketId
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",  // React frontend
+    origin: ["http://localhost:3000", "http://localhost:5173", "http://localhost:3001"],
     methods: ["GET", "POST"],
     credentials: true
   }
@@ -18,20 +18,23 @@ const io = new Server(server, {
 export const getReceiverSocketId = (receiverId) => userSocketMap[receiverId];
 
 io.on("connection", (socket) => {
-  console.log("User connected:", socket.id);
-
   const userId = socket.handshake.query.userId;
+  console.log("User connected:", socket.id, "with userId:", userId);
+  
   if (userId && userId !== "undefined") {
     userSocketMap[userId] = socket.id;
   }
 
+  console.log("Current userSocketMap on connect:", userSocketMap);
+
   io.emit("getOnlineUsers", Object.keys(userSocketMap));
 
   socket.on("disconnect", () => {
-    console.log("User disconnected:", socket.id);
+    console.log("User disconnected:", socket.id, "for userId:", userId);
     delete userSocketMap[userId];
+    console.log("Current userSocketMap on disconnect:", userSocketMap);
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
   });
 });
 
-export { app, io, server };
+export { app, io, server, userSocketMap };

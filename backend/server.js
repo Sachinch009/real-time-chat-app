@@ -14,7 +14,7 @@ import { app, server } from "./socket/socket.js";
 dotenv.config();
 
 app.use(cors({
-  origin: "http://localhost:3000", // React app running locally
+  origin: ["http://localhost:3000", "http://localhost:5173", "http://localhost:3001"],
   credentials: true
 }));
 
